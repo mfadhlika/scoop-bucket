@@ -47,5 +47,6 @@
     "pre_install": [
         "if ($architecture -eq \"64bit\") { Move-Item -Path $dir/gstreamer/1.0/msvc_x86_64/* $dir  } elseif ($architecture -eq \"32bit\") { Move-Item -Path $dir/gstreamer/1.0/msvc_x86/* $dir }",
         "Remove-Item -Path $dir/gstreamer -Force -Recurse"
-    ]
+    ],
+    "depends": "gstreamer"
 }
