@@ -1,0 +1,66 @@
+{
+    "homepage": "https://gstreamer.freedesktop.org/",
+    "version": "1.22.3",
+    "description": "Open-source multimedia framework core library",
+    "license": {
+        "identifier": "LGPL-2.1",
+        "url": "https://gitlab.freedesktop.org/gstreamer/gstreamer/-/raw/master/COPYING"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://gstreamer.freedesktop.org/data/pkg/windows/1.22.3/msvc/gstreamer-1.0-msvc-x86_64-1.22.3.msi",
+            "hash": "80cd4613a3b5e3a884ff78bb64d2ef070439d63ed78ed7cb72dbf85d5798d2b8"
+        },
+        "32bit": {
+            "url": "https://gstreamer.freedesktop.org/data/pkg/windows/1.22.3/msvc/gstreamer-1.0-msvc-x86-1.22.3.msi",
+            "hash": "9a78e99352247a4ec3adc46cd59789484e484d047e823df93137f61539e3d217"
+        }
+    },
+    "bin": [
+        "bin/gdbus.exe",
+        "bin/gdk-pixbuf-csource.exe",
+        "bin/gdk-pixbuf-query-loaders.exe",
+        "bin/ges-launch-1.0.exe",
+        "bin/gio-querymodules.exe",
+        "bin/glib-compile-schemas.exe",
+        "bin/gsettings.exe",
+        "bin/gst-device-monitor-1.0.exe",
+        "bin/gst-discoverer-1.0.exe",
+        "bin/gst-inspect-1.0.exe",
+        "bin/gst-launch-1.0.exe",
+        "bin/gst-play-1.0.exe",
+        "bin/gst-typefind-1.0.exe",
+        "bin/gst-validate-1.0.exe",
+        "bin/gst-validate-media-check-1.0.exe",
+        "bin/gst-validate-rtsp-server-1.0.exe",
+        "bin/gst-validate-transcoding-1.0.exe",
+        "bin/json-glib-format.exe",
+        "bin/json-glib-validate.exe"
+    ],
+    "env_add_path": "bin",
+    "env_set": {
+        "PKG_CONFIG_PATH": "$dir/lib/pkgconfig;$env:PKG_CONFIG_PATH",
+        "GSTREAMER_1_0_ROOT_MSVC_X86_64": "$dir"
+    },
+    "checkver": {
+        "url": "https://gstreamer.freedesktop.org/download/",
+        "re": "(\\d+?\\.\\d+?\\.\\d+?) runtime installer"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://gstreamer.freedesktop.org/data/pkg/windows/$version/msvc/gstreamer-1.0-msvc-x86_64-$version.msi"
+            },
+            "32bit": {
+                "url": "https://gstreamer.freedesktop.org/data/pkg/windows/$version/msvc/gstreamer-1.0-msvc-x86-$version.msi"
+            }
+        },
+        "hash": {
+            "url": "$url.sha256sum"
+        }
+    },
+    "pre_install": [
+        "if ($architecture -eq \"64bit\") { Move-Item -Path $dir/gstreamer/1.0/msvc_x86_64/* $dir  } elseif ($architecture -eq \"32bit\") { Move-Item -Path $dir/gstreamer/1.0/msvc_x86/* $dir }",
+        "Remove-Item -Path $dir/gstreamer -Force -Recurse"
+    ]
+}

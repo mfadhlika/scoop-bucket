@@ -1,0 +1,23 @@
+{
+    "version": "1.1.0",
+    "description": "kubevirt cli utility",
+    "homepage": "https://github.com/kubevirt/kubevirt",
+    "license": "Apache 2.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/kubevirt/kubevirt/releases/download/v1.1.0/virtctl-v1.1.0-windows-amd64.exe#/virtctl.exe",
+            "hash": "sha1:30b35c8c9e4e62eee7be326fb93ad932573b1c64"
+        }
+    },
+    "checkver": {
+        "github": "https://github.com/kubevirt/kubevirt"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/kubevirt/kubevirt/releases/download/v$version/virtctl-v$version-windows-amd64.exe"
+            }
+        }
+    },
+    "bin": "virtctl.exe"
+}

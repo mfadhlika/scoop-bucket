@@ -1,0 +1,51 @@
+{
+    "homepage": "https://gstreamer.freedesktop.org/",
+    "version": "1.22.3",
+    "description": "Open-source multimedia framework core library development files",
+    "license": {
+        "identifier": "LGPL-2.1",
+        "url": "https://gitlab.freedesktop.org/gstreamer/gstreamer/-/raw/master/COPYING"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://gstreamer.freedesktop.org/data/pkg/windows/1.22.3/msvc/gstreamer-1.0-devel-msvc-x86_64-1.22.3.msi",
+            "hash": "e48134f53bb3b2a766fb8b5bc4944a48ab5d6203da9bf5188f94d522b53350dc"
+        },
+        "32bit": {
+            "url": "https://gstreamer.freedesktop.org/data/pkg/windows/1.22.3/msvc/gstreamer-1.0-devel-msvc-x86-1.22.3.msi",
+            "hash": "e1302bac2a21e5336262adf3618ec92025dc5fd1ca676664229aa830b243a99e"
+        }
+    },
+    "bin": [
+        "bin/glib-compile-resources.exe",
+        "bin/gresource.exe",
+        "bin/orc-bugreport.exe",
+        "bin/orcc.exe",
+        "bin/xmllint.exe"
+    ],
+    "env_add_path": "bin",
+    "env_set": {
+        "PKG_CONFIG_PATH": "$dir/lib/pkgconfig;$env:PKG_CONFIG_PATH"
+    },
+    "checkver": {
+        "url": "https://gstreamer.freedesktop.org/download/",
+        "re": "(\\d+?\\.\\d+?\\.\\d+?) development installer"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://gstreamer.freedesktop.org/data/pkg/windows/$version/msvc/gstreamer-1.0-devel-msvc-x86_64-$version.msi"
+            },
+            "32bit": {
+                "url": "https://gstreamer.freedesktop.org/data/pkg/windows/$version/msvc/gstreamer-1.0-devel-msvc-x86-$version.msi"
+            }
+        },
+        "hash": {
+            "url": "$url.sha256sum"
+        }
+    },
+    "pre_install": [
+        "if ($architecture -eq \"64bit\") { Move-Item -Path $dir/gstreamer/1.0/msvc_x86_64/* $dir  } elseif ($architecture -eq \"32bit\") { Move-Item -Path $dir/gstreamer/1.0/msvc_x86/* $dir }",
+        "Remove-Item -Path $dir/gstreamer -Force -Recurse"
+    ]
+}
