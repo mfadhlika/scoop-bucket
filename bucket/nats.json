@@ -1,12 +1,12 @@
 {
-    "version": "0.2.0",
+    "version": "0.2.1",
     "description": "A command line utility to interact with and manage NATS.",
     "homepage": "https://nats.io/",
     "license": "Apache 2.0",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/nats-io/natscli/releases/download/v0.2.0/nats-0.2.0-windows-amd64.zip",
-            "hash": "448c499855cbe84c0fae016f02d44eef85314a182f7ed0ed9c62c898dba1f95f"
+            "url": "https://github.com/nats-io/natscli/releases/download/v0.2.1/nats-0.2.1-windows-amd64.zip",
+            "hash": "8b5e43581a4a233a4a1167249bc49fb5a44ca7fcd674458504b680d1ca8e1f51"
         }
     },
     "bin": "nats-0.0.33-windows-amd64/nats.exe",
